@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 48" width="130" height="48">
+  <!-- Large S -->
+  <text x="2" y="38" font-family="Georgia, 'Times New Roman', serif" font-size="42" font-weight="700" fill="#003087" letter-spacing="-1">S</text>
+  <!-- ysco in lighter weight -->
+  <text x="30" y="38" font-family="'Helvetica Neue', Arial, sans-serif" font-size="30" font-weight="300" fill="#003087" letter-spacing="0.5">ysco</text>
+  <!-- registered mark -->
+  <text x="115" y="18" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="400" fill="#003087">®</text>
+</svg>

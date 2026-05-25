@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 40" width="160" height="40">
+  <!-- apple shape -->
+  <ellipse cx="14" cy="22" rx="8" ry="10" fill="#CC0000"/>
+  <ellipse cx="22" cy="22" rx="8" ry="10" fill="#CC0000"/>
+  <path d="M18 12 Q18 6 22 8" stroke="#CC0000" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <text x="34" y="28" font-family="'Helvetica Neue', Arial, sans-serif" font-size="20" font-weight="700" fill="#CC0000" letter-spacing="-0.3">Applebee's</text>
+</svg>
