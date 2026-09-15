@@ -1,4 +1,18 @@
 import { useState, useEffect, useRef } from 'react'
+import {
+  site,
+  nav,
+  hero,
+  logoWall,
+  problem,
+  services,
+  industries,
+  howWeWork,
+  bench,
+  proof,
+  faq,
+  contact,
+} from './content.js'
 
 // --- Intersection Observer hook for scroll animations ---
 function useFadeIn() {
@@ -22,6 +36,24 @@ function useFadeIn() {
   }, [])
 
   return [ref, visible]
+}
+
+// Shared section chrome
+const sectionClass = (visible, extra = '') =>
+  `py-24 md:py-32 px-6 border-t border-[#E5E5E0] transition-all duration-700 ${
+    visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+  } ${extra}`
+
+function SectionHeader({ eyebrow, headline, children }) {
+  return (
+    <div className="mb-16 max-w-2xl">
+      <p className="text-[#6B6B6B] text-xs font-sans tracking-widest uppercase mb-4">{eyebrow}</p>
+      <h2 className="font-serif font-light text-[#0A0A0A] text-3xl md:text-4xl leading-tight tracking-tight">
+        {headline}
+      </h2>
+      {children}
+    </div>
+  )
 }
 
 // --- NAV ---
@@ -49,13 +81,10 @@ function Nav() {
           className="text-[#F5F5F0] font-sans font-medium tracking-tight text-base link-underline"
           aria-label="Founding Crew home"
         >
-          Founding Crew
+          {site.name}
         </a>
         <ul className="hidden md:flex items-center gap-8 list-none m-0 p-0">
-          {[
-            { label: 'Pillars', href: '#pillars' },
-            { label: 'Contact', href: '#contact' },
-          ].map(({ label, href }) => (
+          {nav.map(({ label, href }) => (
             <li key={label}>
               <a
                 href={href}
@@ -88,45 +117,40 @@ function Hero() {
             className="font-serif font-light text-[#F5F5F0] text-5xl md:text-6xl lg:text-7xl leading-[1.08] tracking-tight mb-8 animate-fade-in"
             style={{ animationDelay: '0.1s', opacity: 0, animationFillMode: 'forwards' }}
           >
-            The founding team
+            {hero.headline}
             <br />
-            <span className="italic">you didn&apos;t hire.</span>
+            <span className="italic">{hero.headlineEmphasis}</span>
           </h1>
           <p
             className="text-[#9A9A94] text-lg md:text-xl font-sans font-light leading-relaxed mb-12 max-w-2xl animate-fade-in"
             style={{ animationDelay: '0.2s', opacity: 0, animationFillMode: 'forwards' }}
           >
-            We&apos;ve shipped at NASA, GE, Cargill, and 3M — inside startups, Fortune 500s, and federal agencies. Now we plug into your company to close the gap between strategy and execution.
+            {hero.sub}
           </p>
           <div
             className="flex flex-col sm:flex-row items-start sm:items-center gap-6 animate-fade-in"
             style={{ animationDelay: '0.3s', opacity: 0, animationFillMode: 'forwards' }}
           >
             <a
-              href="mailto:nate@foundingcrew.io"
+              href={hero.primaryCta.href}
               className="inline-flex items-center gap-2 bg-[#3B82F6] hover:bg-[#2563EB] text-white text-sm font-sans font-medium px-6 py-3 rounded-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:ring-offset-2 focus:ring-offset-[#0A0A0A]"
             >
-              Start a conversation
+              {hero.primaryCta.label}
             </a>
             <a
-              href="#pillars"
+              href={hero.secondaryCta.href}
               className="inline-flex items-center gap-2 text-[#9A9A94] hover:text-[#F5F5F0] text-sm font-sans transition-colors duration-200 link-underline group"
             >
-              See how we work
+              {hero.secondaryCta.label}
               <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
             </a>
           </div>
         </div>
-
         <div
           className="grid grid-cols-3 gap-px bg-[#1E1E1E] mt-24 animate-fade-in"
           style={{ animationDelay: '0.4s', opacity: 0, animationFillMode: 'forwards' }}
         >
-          {[
-            { stat: '6+', label: 'Years at NASA Mission Control' },
-            { stat: '$2M+', label: 'ARR unlocked via compliance' },
-            { stat: '0→1', label: 'Startups to enterprise contracts' },
-          ].map(({ stat, label }) => (
+          {hero.stats.map(({ stat, label }) => (
             <div key={label} className="bg-[#0A0A0A] px-8 py-10">
               <p className="text-[#F5F5F0] font-serif text-4xl md:text-5xl font-light mb-2">{stat}</p>
               <p className="text-[#6B6B6B] text-xs font-sans tracking-wide">{label}</p>
@@ -138,33 +162,10 @@ function Hero() {
   )
 }
 
-// --- SOCIAL PROOF ---
+// --- SOCIAL PROOF (logo marquee — do not change) ---
 function SocialProof() {
   const [ref, visible] = useFadeIn()
-  const logos = [
-    { name: 'NASA', href: 'https://www.nasa.gov/johnson/', logo: '/logos/nasa.svg' },
-    { name: 'Cargill', href: 'https://www.cargill.com', logo: '/logos/cargill.svg' },
-    { name: '3M', href: 'https://www.3m.com', logo: '/logos/3m.svg' },
-    { name: 'GE', href: 'https://www.ge.com', logo: '/logos/ge.svg' },
-    { name: 'Johns Hopkins', href: 'https://www.jhu.edu', logo: '/logos/johnshopkins.png' },
-    { name: 'Biobot Analytics', href: 'https://biobot.io', logo: '/logos/biobot.png', invert: true },
-    { name: 'Emory', href: 'https://reporter.nih.gov/search/TxNs2nZMUEyDRdoywNGcCw/project-details/10781129', logo: '/logos/emory.png', invert: true },
-    { name: 'Cornell', href: 'https://www.cornell.edu', logo: '/logos/cornell.png' },
-    { name: 'Coca-Cola', href: 'https://www.coca-colacompany.com', logo: '/logos/cocacola.svg' },
-    { name: 'ExxonMobil', href: 'https://www.exxonmobil.com', logo: '/logos/exxonmobil.svg' },
-    { name: 'Intel', href: 'https://www.intel.com', logo: '/logos/intel.svg' },
-    { name: 'Micron', href: 'https://www.micron.com', logo: '/logos/micron.svg' },
-    { name: 'KFC', href: 'https://www.kfc.com', logo: '/logos/kfc.png' },
-    { name: "McDonald's", href: 'https://www.mcdonalds.com', logo: '/logos/mcdonalds.svg' },
-    { name: 'Target Field', href: 'https://www.mlb.com/twins/ballpark', logo: '/logos/targetfield.svg' },
-    { name: 'Sysco', href: 'https://www.sysco.com', logo: '/logos/sysco.png' },
-    { name: 'Tyson', href: 'https://www.tysonfoods.com', logo: '/logos/tyson.png' },
-    { name: "Applebee's", href: 'https://www.applebees.com', logo: '/logos/applebees.png' },
-    { name: 'FedEx', href: 'https://www.fedex.com', logo: '/logos/fedex.jpg' },
-    { name: 'Walmart', href: 'https://www.walmart.com', logo: '/logos/walmart.png' },
-    { name: 'Target', href: 'https://www.target.com', logo: '/logos/target.svg' },
-    { name: 'J.B. Hunt', href: 'https://www.jbhunt.com', logo: '/logos/jbhunt.svg' },
-  ]
+  const { logos } = logoWall
 
   return (
     <section
@@ -175,10 +176,10 @@ function SocialProof() {
     >
       <div className="max-w-6xl mx-auto">
         <p className="text-[#6B6B6B] text-xs font-sans tracking-widest uppercase text-center mb-10">
-          Where we&apos;ve shipped
+          {logoWall.eyebrow}
         </p>
       </div>
-      <div className="overflow-hidden" aria-label="Companies we've worked with">
+      <div className="overflow-hidden" aria-label={logoWall.ariaLabel}>
         <div className="flex items-center animate-marquee" style={{ width: 'max-content' }}>
           {[...logos, ...logos].map(({ name, href, logo, invert }, i) => (
             <a
@@ -200,7 +201,7 @@ function SocialProof() {
   )
 }
 
-// --- PROBLEM ---
+// --- PROBLEM / DIFFERENTIATION ---
 function Problem() {
   const [ref, visible] = useFadeIn()
 
@@ -214,24 +215,15 @@ function Problem() {
       <div className="max-w-6xl mx-auto">
         <div className="max-w-2xl">
           <h2 className="font-serif font-light text-[#0A0A0A] text-3xl md:text-4xl leading-tight tracking-tight mb-10">
-            Most companies don&apos;t fail at strategy.
+            {problem.headlineLine1}
             <br />
-            They fail at execution.
+            {problem.headlineLine2}
           </h2>
           <div className="space-y-6 text-[#5A5A55] font-sans font-light leading-relaxed text-base md:text-[17px]">
-            <p>
-              There&apos;s a gap between knowing what to build and shipping it to production.
-              It&apos;s where AI initiatives stall, new product lines get stuck in pilot, and
-              compliance debt accumulates.
-            </p>
-            <p>
-              You can hire consultants who&apos;ll write you a deck. You can hire contractors
-              who&apos;ll build what you scoped. Neither closes the gap.
-            </p>
-            <p className="text-[#0A0A0A]">
-              Founding Crew closes it. We&apos;re operators with founder-grade judgment, not pairs
-              of hands.
-            </p>
+            {problem.paragraphs.map((p) => (
+              <p key={p}>{p}</p>
+            ))}
+            <p className="text-[#0A0A0A]">{problem.closing}</p>
           </div>
         </div>
       </div>
@@ -239,59 +231,27 @@ function Problem() {
   )
 }
 
-// --- PILLARS ---
-function Pillars() {
+// --- SERVICES ---
+function Services() {
   const [ref, visible] = useFadeIn()
 
-  const pillars = [
-    {
-      num: '01',
-      name: 'AI Automation & Training',
-      desc: "We help your team go from 'we should use AI for that' to 'we shipped it last week.' We don't sell you tools you can buy yourself — we train your team to use them, integrate them into your workflows, and own the result.",
-      deliverables: ['Automation rollouts', 'Workflow audits', 'AI training programs', 'Change management'],
-      who: "Companies whose teams need to actually use AI, not just talk about it.",
-    },
-    {
-      num: '02',
-      name: '0→1 Product',
-      desc: 'You have an idea. You need it shipped. We do product direction, customer experience, and software development as a single embedded team — the same way a founding team works.',
-      deliverables: ['MVP builds', 'Product strategy', 'Customer onboarding flows', 'Full-stack engineering', 'Design'],
-      who: 'Seed-stage startups and intrapreneurs at Fortune 500s who need 0→1 velocity.',
-    },
-    {
-      num: '03',
-      name: 'Compliance & Infrastructure',
-      desc: "SOC 2. NIST 800-171. HIPAA. CI/CD that doesn't fall over. We also run AI processing locally against regulated data — patient records, financial files, sensitive CSVs — so you get the speed of automation without data ever leaving your environment.",
-      deliverables: ['Compliance programs', 'Security policies', 'DevSecOps pipelines', 'Cloud architecture', 'Observability', 'Local and cloud deployed AI data pipelines'],
-      who: 'Startups, academic institutions, and enterprises selling into or operating within regulated markets that need a project shipped without expanding headcount.',
-    },
-  ]
-
   return (
-    <section
-      id="pillars"
-      ref={ref}
-      className={`py-24 md:py-32 px-6 border-t border-[#E5E5E0] transition-all duration-700 ${
-        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
-      }`}
-    >
+    <section id="services" ref={ref} className={sectionClass(visible)}>
+      {/* Legacy anchor: keep #pillars links working */}
+      <span id="pillars" aria-hidden="true" />
       <div className="max-w-6xl mx-auto">
-        <div className="mb-16">
-          <p className="text-[#6B6B6B] text-xs font-sans tracking-widest uppercase mb-4">
-            What we do
-          </p>
-          <h2 className="font-serif font-light text-[#0A0A0A] text-3xl md:text-4xl leading-tight tracking-tight">
-            Three pillars. One embedded team.
-          </h2>
-        </div>
+        <SectionHeader eyebrow={services.eyebrow} headline={services.headline} />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-px md:gap-x-px md:gap-y-6 bg-[#E5E5E0]">
-          {pillars.map((p) => (
+          {services.items.map((p) => (
             <div key={p.num} className="bg-[#FFFFFF] p-8 flex flex-col gap-6 md:grid md:row-span-5 md:[grid-template-rows:subgrid] md:gap-0">
               <span className="text-[#3B82F6] text-xs font-sans font-medium tracking-widest">
                 {p.num}
               </span>
               <h3 className="text-[#0A0A0A] font-sans font-medium text-lg leading-tight">
                 {p.name}
+                {p.subtitle && (
+                  <span className="block text-[#8A8A85] font-light text-sm mt-1 mb-3">{p.subtitle}</span>
+                )}
               </h3>
               <p className="text-[#5A5A55] font-sans font-light text-sm leading-relaxed">
                 {p.desc}
@@ -318,49 +278,51 @@ function Pillars() {
   )
 }
 
+// --- INDUSTRIES ---
+function Industries() {
+  const [ref, visible] = useFadeIn()
+  const cards = [...industries.items, { ...industries.note, isNote: true }]
+
+  return (
+    <section id="industries" ref={ref} className={sectionClass(visible)}>
+      <div className="max-w-6xl mx-auto">
+        <SectionHeader eyebrow={industries.eyebrow} headline={industries.headline} />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-[#E5E5E0]">
+          {cards.map((c) => (
+            <div
+              key={c.name}
+              className={`p-8 flex flex-col gap-4 ${c.isNote ? 'bg-[#FAFAF8]' : 'bg-[#FFFFFF]'}`}
+            >
+              <h3
+                className={`font-sans font-medium text-base leading-tight ${
+                  c.isNote ? 'text-[#6B6B6B]' : 'text-[#0A0A0A]'
+                }`}
+              >
+                {c.name}
+              </h3>
+              <p className="text-[#5A5A55] font-sans font-light text-sm leading-relaxed">{c.desc}</p>
+              {c.proof && (
+                <p className="text-[#8A8A85] text-xs font-sans tracking-wide mt-auto pt-4">
+                  {c.proof.join(' · ')}
+                </p>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // --- HOW WE WORK ---
 function HowWeWork() {
   const [ref, visible] = useFadeIn()
-
-  const steps = [
-    {
-      num: '01',
-      title: 'Diagnose',
-      desc: "One free call. We figure out if we're the right team for the problem. If not, we'll tell you who is.",
-    },
-    {
-      num: '02',
-      title: 'Scope',
-      desc: 'Fixed-fee proposal in 5 business days. Clear deliverables. Clear timeline. No retainers.',
-    },
-    {
-      num: '03',
-      title: 'Embed',
-      desc: "We work like part of your team. Daily standups, shared Slack, on-call for launches.",
-    },
-    {
-      num: '04',
-      title: 'Hand off',
-      desc: "We document everything and train your team to own it. Then we leave. That's the point.",
-    },
-  ]
+  const { steps } = howWeWork
 
   return (
-    <section
-      ref={ref}
-      className={`py-24 md:py-32 px-6 border-t border-[#E5E5E0] transition-all duration-700 ${
-        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
-      }`}
-    >
+    <section id="how-we-work" ref={ref} className={sectionClass(visible)}>
       <div className="max-w-6xl mx-auto">
-        <div className="mb-16">
-          <p className="text-[#6B6B6B] text-xs font-sans tracking-widest uppercase mb-4">
-            The process
-          </p>
-          <h2 className="font-serif font-light text-[#0A0A0A] text-3xl md:text-4xl leading-tight tracking-tight">
-            How we work.
-          </h2>
-        </div>
+        <SectionHeader eyebrow={howWeWork.eyebrow} headline={howWeWork.headline} />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#E5E5E0]">
           {steps.map((s, i) => (
             <div key={s.num} className="bg-[#FFFFFF] p-8 flex flex-col gap-4 relative">
@@ -382,50 +344,47 @@ function HowWeWork() {
   )
 }
 
-// --- PROOF ---
+// --- THE BENCH ---
+function Bench() {
+  const [ref, visible] = useFadeIn()
+
+  return (
+    <section ref={ref} className={sectionClass(visible)}>
+      <div className="max-w-6xl mx-auto">
+        <SectionHeader eyebrow={bench.eyebrow} headline={bench.headline}>
+          <p className="text-[#5A5A55] font-sans font-light text-base leading-relaxed mt-6">
+            {bench.desc}
+          </p>
+        </SectionHeader>
+        <div className="flex flex-wrap gap-3">
+          {bench.disciplines.map((d) => (
+            <span
+              key={d}
+              className="px-4 py-2 border border-[#E5E5E0] text-[#5A5A55] font-sans text-sm rounded-sm hover:border-[#3B82F6] hover:text-[#3B82F6] transition-colors duration-200 cursor-default"
+            >
+              {d}
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// --- PROOF / TRACK RECORD ---
 function Proof() {
   const [ref, visible] = useFadeIn()
 
-  const cases = [
-    {
-      outcome: 'SOC 2 in 6 months. NIST 800-171 underway. $2M ARR in new vertical unlocked.',
-      company: 'Seed-stage startup',
-      what: 'Founder-led the compliance program that opened regulated enterprise markets.',
-      href: null,
-    },
-    {
-      outcome: '0→1 hardware + software product business shipping to McDonald\'s, KFC, and Target Field.',
-      company: 'Cargill Horizons',
-      what: 'Built from a garage to enterprise contracts with metered funding. CES Innovation Award honoree.',
-      href: 'https://www.cargill.com',
-    },
-    {
-      outcome: 'Mission-critical procedure tracking deployed at NASA Houston Mission Control.',
-      company: 'NASA Johnson Space Center',
-      what: 'Six years of full-stack work on systems used for International Space Station operations.',
-      href: 'https://www.nasa.gov/johnson/',
-    },
-  ]
-
   return (
-    <section
-      ref={ref}
-      className={`py-24 md:py-32 px-6 border-t border-[#E5E5E0] transition-all duration-700 ${
-        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
-      }`}
-    >
+    <section ref={ref} className={sectionClass(visible)}>
       <div className="max-w-6xl mx-auto">
-        <div className="mb-16">
-          <p className="text-[#6B6B6B] text-xs font-sans tracking-widest uppercase mb-4">
-            Track record
-          </p>
-          <h2 className="font-serif font-light text-[#0A0A0A] text-3xl md:text-4xl leading-tight tracking-tight">
-            What we&apos;ve shipped.
-          </h2>
-        </div>
+        <SectionHeader eyebrow={proof.eyebrow} headline={proof.headline} />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[#E5E5E0]">
-          {cases.map((c) => (
+          {proof.cases.map((c) => (
             <div key={c.company} className="bg-[#FFFFFF] p-8 flex flex-col gap-4">
+              <span className="text-[#8A8A85] text-xs font-sans tracking-widest uppercase">
+                {c.industry}
+              </span>
               <p className="text-[#0A0A0A] font-sans font-medium text-sm leading-snug">
                 {c.outcome}
               </p>
@@ -450,50 +409,13 @@ function FAQ() {
   const [ref, visible] = useFadeIn()
   const [open, setOpen] = useState(null)
 
-  const items = [
-    {
-      q: 'How are you different from a consulting firm?',
-      a: "Consulting firms write decks. We ship products. We embed with your team, own the outcomes, and hand off working systems — not slide recommendations. We have skin in the execution, not just the strategy.",
-    },
-    {
-      q: "Why not just hire a contractor?",
-      a: "Contractors execute what you spec. We figure out what to build, how to build it, and why — then build it. If the spec is wrong, we'll tell you before you pay for something that won't work.",
-    },
-    {
-      q: "We're too small / too early.",
-      a: "No you're not. Seed-stage is exactly when founder-grade execution matters most. We've worked with 2-person teams and helped them punch into enterprise markets. Small is a feature, not a blocker.",
-    },
-    {
-      q: "We're too big / too regulated.",
-      a: "No you're not. We've shipped inside Cargill, 3M, and NASA. We understand compliance requirements, procurement, and the politics of large organizations. Regulated markets are a specialty, not a limitation.",
-    },
-    {
-      q: 'How do you bill?',
-      a: "Fixed-fee per project. No hourly, no retainer. You know what you're getting and what it costs before we start. Scope changes require a new proposal — no scope creep, no surprise invoices.",
-    },
-    {
-      q: 'How long are typical engagements?',
-      a: "Three to six months for a defined project. We have done shorter sprints (6-8 weeks) for focused audits or compliance work. We don't do indefinite retainers — we complete the work and hand it off.",
-    },
-  ]
-
   return (
-    <section
-      ref={ref}
-      className={`py-24 md:py-32 px-6 border-t border-[#E5E5E0] transition-all duration-700 ${
-        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
-      }`}
-    >
+    <section ref={ref} className={sectionClass(visible)}>
       <div className="max-w-6xl mx-auto">
-        <div className="mb-16">
-          <p className="text-[#6B6B6B] text-xs font-sans tracking-widest uppercase mb-4">FAQ</p>
-          <h2 className="font-serif font-light text-[#0A0A0A] text-3xl md:text-4xl leading-tight tracking-tight">
-            Common questions.
-          </h2>
-        </div>
+        <SectionHeader eyebrow={faq.eyebrow} headline={faq.headline} />
         <div className="max-w-2xl flex flex-col divide-y divide-[#E5E5E0]">
-          {items.map((item, i) => (
-            <div key={i}>
+          {faq.items.map((item, i) => (
+            <div key={item.q}>
               <button
                 className="w-full text-left py-5 flex items-start justify-between gap-4 group focus:outline-none"
                 onClick={() => setOpen(open === i ? null : i)}
@@ -523,32 +445,80 @@ function FAQ() {
   )
 }
 
-// --- FINAL CTA ---
-function FinalCTA() {
+// --- CONTACT ---
+const inputClass =
+  'w-full bg-[#FFFFFF] border border-[#E5E5E0] text-[#0A0A0A] placeholder-[#9A9A94] font-sans text-sm px-4 py-3 rounded-sm focus:outline-none focus:border-[#3B82F6] focus:ring-1 focus:ring-[#3B82F6] transition-colors'
+
+function Contact() {
   const [ref, visible] = useFadeIn()
+  const [status, setStatus] = useState('idle') // idle | submitting | success | error
+  const endpoint = `https://formspree.io/f/${site.formspreeId}`
+
+  async function handleSubmit(e) {
+    e.preventDefault()
+    setStatus('submitting')
+    try {
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(e.currentTarget),
+      })
+      setStatus(res.ok ? 'success' : 'error')
+    } catch {
+      setStatus('error')
+    }
+  }
 
   return (
-    <section
-      id="contact"
-      ref={ref}
-      className={`py-32 md:py-40 px-6 border-t border-[#E5E5E0] text-center transition-all duration-700 ${
-        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
-      }`}
-    >
-      <div className="max-w-xl mx-auto">
+    <section id="contact" ref={ref} className={sectionClass(visible, 'py-32 md:py-40')}>
+      <div className="max-w-xl mx-auto text-center">
         <h2 className="font-serif font-light text-[#0A0A0A] text-4xl md:text-5xl leading-tight tracking-tight mb-6">
-          Let&apos;s talk.
+          {contact.headline}
         </h2>
-        <p className="text-[#5A5A55] font-sans font-light text-lg leading-relaxed mb-10">
-          Free 30-minute call. We&apos;ll tell you whether we&apos;re the right team for the job.
+        <p className="text-[#5A5A55] font-sans font-light text-lg leading-relaxed mb-2">{contact.sub}</p>
+        <p className="text-[#8A8A85] font-sans text-sm mb-10">{contact.responseNote}</p>
+
+        {status === 'success' ? (
+          <p className="text-[#0A0A0A] font-sans text-base py-8" role="status">
+            {contact.successMessage}
+          </p>
+        ) : (
+          <form onSubmit={handleSubmit} action={endpoint} method="POST" className="text-left flex flex-col gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <label className="sr-only" htmlFor="contact-name">{contact.fields.name}</label>
+              <input id="contact-name" name="name" type="text" required autoComplete="name" placeholder={contact.fields.name} className={inputClass} />
+              <label className="sr-only" htmlFor="contact-email">{contact.fields.email}</label>
+              <input id="contact-email" name="email" type="email" required autoComplete="email" placeholder={contact.fields.email} className={inputClass} />
+              <label className="sr-only" htmlFor="contact-company">{contact.fields.company}</label>
+              <input id="contact-company" name="company" type="text" required autoComplete="organization" placeholder={contact.fields.company} className={inputClass} />
+              <label className="sr-only" htmlFor="contact-role">{contact.fields.role}</label>
+              <input id="contact-role" name="role" type="text" autoComplete="organization-title" placeholder={contact.fields.role} className={inputClass} />
+            </div>
+            <label className="sr-only" htmlFor="contact-message">{contact.fields.message}</label>
+            <textarea id="contact-message" name="message" required rows={4} placeholder={contact.fields.message} className={inputClass} />
+            {/* Honeypot for spam bots */}
+            <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
+            <button
+              type="submit"
+              disabled={status === 'submitting'}
+              className="inline-flex items-center justify-center gap-2 bg-[#3B82F6] hover:bg-[#2563EB] disabled:opacity-60 text-white text-sm font-sans font-medium px-8 py-4 rounded-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:ring-offset-2 focus:ring-offset-[#FAFAF8]"
+            >
+              {status === 'submitting' ? 'Sending…' : contact.submitLabel}
+            </button>
+            {status === 'error' && (
+              <p className="text-[#B91C1C] font-sans text-sm text-center" role="alert">
+                {contact.errorMessage}
+              </p>
+            )}
+          </form>
+        )}
+
+        <p className="text-[#8A8A85] font-sans text-xs mt-8">
+          {contact.emailLabel}{' '}
+          <a href={`mailto:${site.email}`} className="text-[#6B6B6B] hover:text-[#0A0A0A] link-underline">
+            {site.email}
+          </a>
         </p>
-        <a
-          href="mailto:nate@foundingcrew.io"
-          className="inline-flex items-center gap-2 bg-[#3B82F6] hover:bg-[#2563EB] text-white text-sm font-sans font-medium px-8 py-4 rounded-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:ring-offset-2 focus:ring-offset-[#FAFAF8]"
-        >
-          Start a conversation
-        </a>
-        <p className="text-[#8A8A85] font-sans text-xs mt-6">nate@foundingcrew.io</p>
       </div>
     </section>
   )
@@ -560,17 +530,12 @@ function Footer() {
     <footer className="border-t border-[#E5E5E0] py-12 px-6">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6">
         <div>
-          <p className="text-[#0A0A0A] font-sans font-medium text-sm mb-2">Founding Crew</p>
-          <p className="text-[#6B6B6B] font-sans font-light text-xs leading-relaxed">
-            The founding team you didn&apos;t hire.
-          </p>
+          <p className="text-[#0A0A0A] font-sans font-medium text-sm mb-2">{site.name}</p>
+          <p className="text-[#6B6B6B] font-sans font-light text-xs leading-relaxed">{site.tagline}</p>
         </div>
         <nav aria-label="Footer navigation" className="flex justify-center">
-          <ul className="flex flex-row gap-6 list-none m-0 p-0">
-            {[
-              { label: 'Pillars', href: '#pillars' },
-              { label: 'Contact', href: '#contact' },
-            ].map(({ label, href }) => (
+          <ul className="flex flex-row flex-wrap gap-6 list-none m-0 p-0">
+            {nav.map(({ label, href }) => (
               <li key={label}>
                 <a
                   href={href}
@@ -582,10 +547,8 @@ function Footer() {
             ))}
           </ul>
         </nav>
-        <div className="flex justify-end">
-          <p className="text-[#8A8A85] font-sans text-xs leading-relaxed">
-            &copy; 2026 Founding Crew
-          </p>
+        <div className="flex md:justify-end">
+          <p className="text-[#8A8A85] font-sans text-xs leading-relaxed">{site.copyright}</p>
         </div>
       </div>
     </footer>
@@ -595,14 +558,7 @@ function Footer() {
 // --- INLINE ICONS (no heavy icon lib) ---
 function ArrowRight({ className }) {
   return (
-    <svg
-      className={className}
-      viewBox="0 0 16 16"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      aria-hidden="true"
-    >
+    <svg className={className} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
       <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   )
@@ -610,69 +566,9 @@ function ArrowRight({ className }) {
 
 function Plus({ className }) {
   return (
-    <svg
-      className={className}
-      viewBox="0 0 16 16"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      aria-hidden="true"
-    >
+    <svg className={className} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
       <path d="M8 3v10M3 8h10" strokeLinecap="round" />
     </svg>
-  )
-}
-
-// --- RESOURCES ---
-function Resources() {
-  const [ref, visible] = useFadeIn()
-
-  const disciplines = [
-    'Technical Founders',
-    'Product Founders',
-    'Customer Success',
-    'PCB & Electrical Engineering',
-    'Full-Stack Engineering',
-    'DevSecOps & Cloud',
-    'Compliance & Regulatory',
-    'AI & Automation',
-    'UX & Product Design',
-    'Go-to-Market Strategy',
-    'Research & Data Science',
-    'Hardware & Manufacturing',
-  ]
-
-  return (
-    <section
-      ref={ref}
-      className={`py-24 md:py-32 px-6 border-t border-[#E5E5E0] transition-all duration-700 ${
-        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
-      }`}
-    >
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-16 max-w-2xl">
-          <p className="text-[#6B6B6B] text-xs font-sans tracking-widest uppercase mb-4">
-            The bench
-          </p>
-          <h2 className="font-serif font-light text-[#0A0A0A] text-3xl md:text-4xl leading-tight tracking-tight mb-6">
-            We bring more than two people.
-          </h2>
-          <p className="text-[#5A5A55] font-sans font-light text-base leading-relaxed">
-            Founding Crew includes a vetted network of operators, engineers, and specialists. When your project needs it, we pull in the right people — already trusted, already proven.
-          </p>
-        </div>
-        <div className="flex flex-wrap gap-3">
-          {disciplines.map((d) => (
-            <span
-              key={d}
-              className="px-4 py-2 border border-[#E5E5E0] text-[#5A5A55] font-sans text-sm rounded-sm hover:border-[#3B82F6] hover:text-[#3B82F6] transition-colors duration-200 cursor-default"
-            >
-              {d}
-            </span>
-          ))}
-        </div>
-      </div>
-    </section>
   )
 }
 
@@ -685,12 +581,13 @@ export default function App() {
         <Hero />
         <SocialProof />
         <Problem />
-        <Pillars />
+        <Services />
+        <Industries />
         <HowWeWork />
-        <Resources />
+        <Bench />
         <Proof />
         <FAQ />
-        <FinalCTA />
+        <Contact />
       </main>
       <Footer />
     </>
