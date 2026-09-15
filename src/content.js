@@ -6,9 +6,10 @@
 export const site = {
   name: 'Founding Crew',
   email: 'nate@foundingcrew.io',
-  // REVIEW: create a form at https://formspree.io that forwards to the inbox
-  // above, then replace this with the real form ID (e.g. 'xpzgkqyw').
-  formspreeId: 'YOUR_FORM_ID',
+  // PARKED: contact form backend. Leave empty and the contact section shows an
+  // email button instead of the form. Set to a full POST endpoint URL
+  // (Formspree, a Cloudflare Worker, etc.) to turn the form on.
+  formEndpoint: '',
   tagline: 'Digital transformation, delivered by forward deployed engineers.',
   copyright: '© 2026 Founding Crew',
 }
@@ -23,21 +24,22 @@ export const nav = [
 export const hero = {
   headline: 'Digital transformation',
   headlineEmphasis: 'that actually ships.',
-  sub: "Forward deployed engineers who've shipped inside NASA, Cargill, 3M, and GE. We embed with your teams to take AI and digital initiatives from pilot to production.",
+  sub: "Forward deployed engineers, product specialists, and strategists who've shipped inside NASA, Cargill, 3M, and GE. We embed with your teams to take AI and digital initiatives from pilot to production.",
   primaryCta: { label: 'Talk to our team', href: '#contact' },
   secondaryCta: { label: 'See how we work', href: '#how-we-work' },
   // REVIEW: confirm all three are defensible as stated.
   stats: [
     { stat: '6+', label: 'Years at NASA Mission Control' },
-    { stat: '3', label: 'Regulated frameworks delivered: SOC 2, NIST 800-171, HIPAA' },
-    { stat: '100%', label: 'Fixed-fee engagements. No retainers, no hourly.' },
+    { stat: '20+', label: 'Enterprise, federal, and academic environments shipped inside' },
+    { stat: '0→1', label: 'Launch new enterprise initiatives' },
   ],
 }
 
 // Do not change: same logos, same order, same behavior.
 export const logoWall = {
   eyebrow: "Where we've shipped",
-  ariaLabel: "Companies we've worked with",
+  note: "Experience across our team's prior roles and engagements.",
+  ariaLabel: "Organizations our team has shipped inside",
   logos: [
     { name: 'NASA', href: 'https://www.nasa.gov/johnson/', logo: '/logos/nasa.svg' },
     { name: 'Cargill', href: 'https://www.cargill.com', logo: '/logos/cargill.svg' },
@@ -126,6 +128,7 @@ export const services = {
 export const industries = {
   eyebrow: 'Where we work',
   headline: 'Built for regulated, mission-critical environments.',
+  proofLabel: 'Team experience:',
   // REVIEW: confirm each proof-point list reflects work actually done in that industry.
   items: [
     {
@@ -157,7 +160,7 @@ export const industries = {
   // Sixth card: keeps the compliance proof point visible now that it is no longer a headline pillar.
   note: {
     name: 'Across all of them',
-    desc: 'Security and compliance are built into every engagement, not bolted on. SOC 2, NIST 800-171, HIPAA, DevSecOps, and cloud architecture are standard capabilities.',
+    desc: 'Security and compliance are part of every engagement. We can deliver SOC 2, NIST 800-171, and HIPAA programs, and DevSecOps and cloud architecture are standard capabilities.',
   },
 }
 
@@ -217,22 +220,22 @@ export const proof = {
       industry: 'Aerospace',
       outcome: 'Mission-critical procedure tracking deployed at NASA Houston Mission Control.',
       company: 'NASA Johnson Space Center',
-      what: 'Six years of full-stack work on systems used for International Space Station operations.',
+      what: 'Six-year engagement doing full-stack work on systems used for International Space Station operations.',
       href: 'https://www.nasa.gov/johnson/',
     },
     {
       industry: 'Supply Chain & Manufacturing',
       outcome: "0→1 hardware + software product business shipping to McDonald's, KFC, and Target Field.",
       company: 'Cargill Horizons',
-      what: 'Built from concept to enterprise contracts with metered funding. CES Innovation Award honoree.',
+      what: 'Project built from concept to enterprise contracts with metered funding. CES Innovation Award honoree.',
       href: 'https://www.cargill.com',
     },
     {
       industry: 'Regulated Markets',
-      outcome: 'SOC 2 in 6 months. NIST 800-171 underway. Regulated enterprise markets opened for a new product line.',
+      outcome: 'SOC 2 in 6 months. NIST 800-171 work underway. $2M+ ARR unlocked in a new vertical.',
       // REVIEW: client was previously described as "Seed-stage startup". Name it if permitted.
       company: 'Confidential client',
-      what: 'Led the compliance program and security controls that let a new product line sell into regulated enterprise markets.',
+      what: 'Compliance program project that opened regulated enterprise markets for a new product line.',
       href: null,
     },
   ],
@@ -256,7 +259,7 @@ export const faq = {
     },
     {
       q: 'How do you handle security, data residency, and regulated data?',
-      a: "We've delivered SOC 2, NIST 800-171, and HIPAA programs, and we build to those standards by default. Where data can't leave your environment, we run AI processing locally or in your private cloud. Nothing moves without your security team's sign-off.",
+      a: "We can deliver SOC 2, NIST 800-171, and HIPAA programs, and we build to those standards by default. Where data can't leave your environment, we run AI processing locally or in your private cloud. Nothing moves without your security team's sign-off.",
     },
     {
       q: 'Can you integrate with legacy, on-prem, or ERP systems?',

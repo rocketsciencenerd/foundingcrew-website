@@ -197,6 +197,9 @@ function SocialProof() {
           ))}
         </div>
       </div>
+      <div className="max-w-6xl mx-auto">
+        <p className="text-[#8A8A85] text-xs font-sans text-center mt-8">{logoWall.note}</p>
+      </div>
     </section>
   )
 }
@@ -303,6 +306,7 @@ function Industries() {
               <p className="text-[#5A5A55] font-sans font-light text-sm leading-relaxed">{c.desc}</p>
               {c.proof && (
                 <p className="text-[#8A8A85] text-xs font-sans tracking-wide mt-auto pt-4">
+                  <span className="text-[#6B6B6B]">{industries.proofLabel} </span>
                   {c.proof.join(' · ')}
                 </p>
               )}
@@ -383,7 +387,7 @@ function Proof() {
           {proof.cases.map((c) => (
             <div key={c.company} className="bg-[#FFFFFF] p-8 flex flex-col gap-4">
               <span className="text-[#8A8A85] text-xs font-sans tracking-widest uppercase">
-                {c.industry}
+                Project · {c.industry}
               </span>
               <p className="text-[#0A0A0A] font-sans font-medium text-sm leading-snug">
                 {c.outcome}
@@ -452,7 +456,7 @@ const inputClass =
 function Contact() {
   const [ref, visible] = useFadeIn()
   const [status, setStatus] = useState('idle') // idle | submitting | success | error
-  const endpoint = `https://formspree.io/f/${site.formspreeId}`
+  const endpoint = site.formEndpoint
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -478,7 +482,14 @@ function Contact() {
         <p className="text-[#5A5A55] font-sans font-light text-lg leading-relaxed mb-2">{contact.sub}</p>
         <p className="text-[#8A8A85] font-sans text-sm mb-10">{contact.responseNote}</p>
 
-        {status === 'success' ? (
+        {!endpoint ? (
+          <a
+            href={`mailto:${site.email}`}
+            className="inline-flex items-center gap-2 bg-[#3B82F6] hover:bg-[#2563EB] text-white text-sm font-sans font-medium px-8 py-4 rounded-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:ring-offset-2 focus:ring-offset-[#FAFAF8]"
+          >
+            {contact.submitLabel}
+          </a>
+        ) : status === 'success' ? (
           <p className="text-[#0A0A0A] font-sans text-base py-8" role="status">
             {contact.successMessage}
           </p>
