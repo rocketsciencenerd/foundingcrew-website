@@ -29,17 +29,17 @@ export const hero = {
   secondaryCta: { label: 'See how we work', href: '#how-we-work' },
   // REVIEW: confirm all three are defensible as stated.
   stats: [
-    { stat: '6+', label: 'Years at NASA Mission Control' },
-    { stat: '20+', label: 'Enterprise, federal, and academic environments shipped inside' },
-    { stat: '0→1', label: 'Launch new enterprise initiatives' },
+    { stat: '6+', label: 'Years at NASA Mission Control, delivering software' },
+    { stat: '20+', label: "Enterprise, federal, and academic organizations we've built with" },
+    { stat: '0→1', label: 'Launch new enterprise initiatives, special projects, or AI rollouts' },
   ],
 }
 
 // Do not change: same logos, same order, same behavior.
 export const logoWall = {
-  eyebrow: "Where we've shipped",
+  eyebrow: "Who we've built with",
   note: "Experience across our team's prior roles and engagements.",
-  ariaLabel: "Organizations our team has shipped inside",
+  ariaLabel: "Organizations our team has built with",
   logos: [
     { name: 'NASA', href: 'https://www.nasa.gov/johnson/', logo: '/logos/nasa.svg' },
     { name: 'Cargill', href: 'https://www.cargill.com', logo: '/logos/cargill.svg' },

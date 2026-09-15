@@ -147,7 +147,7 @@ function Hero() {
           </div>
         </div>
         <div
-          className="grid grid-cols-3 gap-px bg-[#1E1E1E] mt-24 animate-fade-in"
+          className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-[#1E1E1E] mt-24 animate-fade-in"
           style={{ animationDelay: '0.4s', opacity: 0, animationFillMode: 'forwards' }}
         >
           {hero.stats.map(({ stat, label }) => (
