@@ -1,0 +1,10 @@
+# dependencies
+node_modules/
+
+# local reference docs (not published)
+foundingcrew.md
+CLAUDE.local.md
+docs/
+
+# OS / editor
+.DS_Store
