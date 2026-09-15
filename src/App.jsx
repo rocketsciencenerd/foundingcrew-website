@@ -78,10 +78,11 @@ function Nav() {
       >
         <a
           href="#"
-          className="text-[#F5F5F0] font-sans font-medium tracking-tight text-base link-underline"
+          className="flex items-center gap-2.5 text-[#F5F5F0] font-sans font-medium tracking-tight text-base"
           aria-label="Founding Crew home"
         >
-          {site.name}
+          <Mark />
+          <span className="link-underline">{site.name}</span>
         </a>
         <ul className="hidden md:flex items-center gap-8 list-none m-0 p-0">
           {nav.map(({ label, href }) => (
@@ -133,7 +134,7 @@ function Hero() {
           >
             <a
               href={hero.primaryCta.href}
-              className="inline-flex items-center gap-2 bg-[#3B82F6] hover:bg-[#2563EB] text-white text-sm font-sans font-medium px-6 py-3 rounded-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:ring-offset-2 focus:ring-offset-[#0A0A0A]"
+              className="inline-flex items-center gap-2 bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white text-sm font-sans font-medium px-6 py-3 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 focus:ring-offset-[#0A0A0A]"
             >
               {hero.primaryCta.label}
             </a>
@@ -247,7 +248,7 @@ function Services() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-px md:gap-x-px md:gap-y-6 bg-[#E5E5E0]">
           {services.items.map((p) => (
             <div key={p.num} className="bg-[#FFFFFF] p-8 flex flex-col gap-6 md:grid md:row-span-5 md:[grid-template-rows:subgrid] md:gap-0">
-              <span className="text-[#3B82F6] text-xs font-sans font-medium tracking-widest">
+              <span className="text-[var(--accent)] text-xs font-sans font-medium tracking-widest">
                 {p.num}
               </span>
               <h3 className="text-[#0A0A0A] font-sans font-medium text-lg leading-tight">
@@ -262,7 +263,7 @@ function Services() {
               <ul className="flex flex-col gap-1.5 pt-4 pb-6">
                 {p.deliverables.map((d) => (
                   <li key={d} className="text-[#6B6B6B] text-xs font-sans flex items-center gap-2">
-                    <span className="w-1 h-1 rounded-full bg-[#3B82F6] shrink-0" />
+                    <span className="w-1 h-1 rounded-full bg-[var(--accent)] shrink-0" />
                     {d}
                   </li>
                 ))}
@@ -335,7 +336,7 @@ function HowWeWork() {
                   <div className="w-2 h-2 rounded-full bg-[#CCCCCC]" />
                 </div>
               )}
-              <span className="text-[#3B82F6] text-xs font-sans font-medium tracking-widest">
+              <span className="text-[var(--accent)] text-xs font-sans font-medium tracking-widest">
                 {s.num}
               </span>
               <h3 className="text-[#0A0A0A] font-sans font-medium text-base">{s.title}</h3>
@@ -364,7 +365,7 @@ function Bench() {
           {bench.disciplines.map((d) => (
             <span
               key={d}
-              className="px-4 py-2 border border-[#E5E5E0] text-[#5A5A55] font-sans text-sm rounded-sm hover:border-[#3B82F6] hover:text-[#3B82F6] transition-colors duration-200 cursor-default"
+              className="px-4 py-2 border border-[#E5E5E0] text-[#5A5A55] font-sans text-sm rounded-md hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors duration-200 cursor-default"
             >
               {d}
             </span>
@@ -393,11 +394,11 @@ function Proof() {
                 {c.outcome}
               </p>
               {c.href ? (
-                <a href={c.href} target="_blank" rel="noopener noreferrer" className="text-[#3B82F6] hover:text-[#2563EB] text-xs font-sans tracking-wide transition-colors">
+                <a href={c.href} target="_blank" rel="noopener noreferrer" className="text-[var(--accent)] hover:text-[var(--accent-hover)] text-xs font-sans tracking-wide transition-colors">
                   {c.company}
                 </a>
               ) : (
-                <p className="text-[#3B82F6] text-xs font-sans tracking-wide">{c.company}</p>
+                <p className="text-[var(--accent)] text-xs font-sans tracking-wide">{c.company}</p>
               )}
               <p className="text-[#5A5A55] font-sans font-light text-sm leading-relaxed">{c.what}</p>
             </div>
@@ -451,7 +452,7 @@ function FAQ() {
 
 // --- CONTACT ---
 const inputClass =
-  'w-full bg-[#FFFFFF] border border-[#E5E5E0] text-[#0A0A0A] placeholder-[#9A9A94] font-sans text-sm px-4 py-3 rounded-sm focus:outline-none focus:border-[#3B82F6] focus:ring-1 focus:ring-[#3B82F6] transition-colors'
+  'w-full bg-[#FFFFFF] border border-[#E5E5E0] text-[#0A0A0A] placeholder-[#9A9A94] font-sans text-sm px-4 py-3 rounded-md focus:outline-none focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] transition-colors'
 
 function Contact() {
   const [ref, visible] = useFadeIn()
@@ -485,7 +486,7 @@ function Contact() {
         {!endpoint ? (
           <a
             href={`mailto:${site.email}`}
-            className="inline-flex items-center gap-2 bg-[#3B82F6] hover:bg-[#2563EB] text-white text-sm font-sans font-medium px-8 py-4 rounded-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:ring-offset-2 focus:ring-offset-[#FAFAF8]"
+            className="inline-flex items-center gap-2 bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white text-sm font-sans font-medium px-8 py-4 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 focus:ring-offset-[#FAFAF8]"
           >
             {contact.submitLabel}
           </a>
@@ -512,7 +513,7 @@ function Contact() {
             <button
               type="submit"
               disabled={status === 'submitting'}
-              className="inline-flex items-center justify-center gap-2 bg-[#3B82F6] hover:bg-[#2563EB] disabled:opacity-60 text-white text-sm font-sans font-medium px-8 py-4 rounded-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:ring-offset-2 focus:ring-offset-[#FAFAF8]"
+              className="inline-flex items-center justify-center gap-2 bg-[var(--accent)] hover:bg-[var(--accent-hover)] disabled:opacity-60 text-white text-sm font-sans font-medium px-8 py-4 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 focus:ring-offset-[#FAFAF8]"
             >
               {status === 'submitting' ? 'Sending…' : contact.submitLabel}
             </button>
@@ -563,6 +564,18 @@ function Footer() {
         </div>
       </div>
     </footer>
+  )
+}
+
+// --- BRAND MARK ---
+function Mark({ className = '' }) {
+  return (
+    <span
+      aria-hidden="true"
+      className={`inline-flex items-center justify-center w-6 h-6 rounded-md bg-[var(--accent)] text-[#F5F5F0] font-serif text-[11px] leading-none select-none ${className}`}
+    >
+      FC
+    </span>
   )
 }
 

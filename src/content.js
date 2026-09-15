@@ -105,6 +105,7 @@ export const services = {
         'UX & product design',
         'Full-stack engineering',
         'Hardware & embedded systems',
+        'Replacing third-party systems',
         'Launch & rollout',
       ],
       who: 'Enterprise and intrapreneurial teams that need a new product or platform shipped, not scoped.',
@@ -116,7 +117,7 @@ export const services = {
       deliverables: [
         'Implementation & rollout',
         'Change management',
-        'Team training programs',
+        'AI training for your teams',
         'Documentation & handoff',
         'Ongoing enablement',
       ],
