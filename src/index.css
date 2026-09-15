@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* Brand accent: indigo. Used for buttons, section numbers, bullets, links, and the FC mark. */
+    --accent: #4F46E5;
+    --accent-hover: #4338CA;
+  }
+
   html {
     scroll-behavior: smooth;
   }

@@ -8,8 +8,8 @@ export default {
         surface: '#111111',
         border: '#1E1E1E',
         muted: '#6B6B6B',
-        accent: '#3B82F6',
-        'accent-dim': '#1D4ED8',
+        accent: 'var(--accent)',
+        'accent-dim': 'var(--accent-hover)',
       },
       fontFamily: {
         sans: ['DM Sans', 'system-ui', 'sans-serif'],
