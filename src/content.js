@@ -10,7 +10,7 @@ export const site = {
   // email button instead of the form. Set to a full POST endpoint URL
   // (Formspree, a Cloudflare Worker, etc.) to turn the form on.
   formEndpoint: '',
-  tagline: 'Digital transformation, delivered by forward deployed engineers.',
+  tagline: 'The founding team for your next enterprise initiative. Forward deployed.',
   copyright: '© 2026 Founding Crew',
 }
 
@@ -22,8 +22,8 @@ export const nav = [
 ]
 
 export const hero = {
-  headline: 'Digital transformation',
-  headlineEmphasis: 'that actually ships.',
+  headline: 'New initiatives need a founding team.',
+  headlineEmphasis: 'We deploy one inside your organization.',
   sub: "Forward deployed engineers, product specialists, and strategists who've shipped inside NASA, Cargill, 3M, and GE. We embed with your teams to take AI and digital initiatives from pilot to production.",
   primaryCta: { label: 'Talk to our team', href: '#contact' },
   secondaryCta: { label: 'See how we work', href: '#how-we-work' },
