@@ -281,7 +281,7 @@ export const faq = {
     },
     {
       q: 'What happens after handoff?',
-      a: 'You own it. Documentation, training, and runbooks are part of every engagement, and your team is operating the system before we step back. If you want ongoing enablement, we scope that separately — never as an open-ended retainer.',
+      a: 'You own it. Documentation, training, and implementation support are part of every engagement, and your team is operating the system before we step back. If you want ongoing enablement, we scope that separately — never as an open-ended retainer.',
     },
     {
       q: 'How do you fit into our procurement process?',
@@ -293,9 +293,9 @@ export const faq = {
 export const contact = {
   headline: "Let's talk.",
   sub: "Book a discovery call. We'll tell you whether we're the right team for the job.",
-  responseNote: 'Typical response within one business day.',
+  responseNote: 'Detailed proposal within 5 business days.',
   submitLabel: 'Book a discovery call',
-  successMessage: "Thanks — we've got it. Expect a reply within one business day.",
+  successMessage: "Thanks — we've got it. We'll be in touch shortly.",
   errorMessage: 'Something went wrong. Email us directly and we will get right back to you.',
   emailLabel: 'Or email us directly:',
   fields: {
