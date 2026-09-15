@@ -112,9 +112,9 @@ function Hero() {
   return (
     <section className="min-h-screen flex flex-col justify-center pt-24 pb-0 px-6 bg-[#0A0A0A]">
       <div className="max-w-6xl mx-auto w-full">
-        <div className="max-w-5xl">
+        <div className="max-w-3xl">
           <h1
-            className="font-serif font-light text-[#F5F5F0] text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight mb-8 animate-fade-in"
+            className="font-serif font-light text-[#F5F5F0] text-5xl md:text-6xl lg:text-7xl leading-[1.08] tracking-tight mb-8 animate-fade-in"
             style={{ animationDelay: '0.1s', opacity: 0, animationFillMode: 'forwards' }}
           >
             {hero.headline}
@@ -147,7 +147,7 @@ function Hero() {
           </div>
         </div>
         <div
-          className="grid grid-cols-3 gap-px bg-[#1E1E1E] mt-24 animate-fade-in"
+          className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-[#1E1E1E] mt-24 animate-fade-in"
           style={{ animationDelay: '0.4s', opacity: 0, animationFillMode: 'forwards' }}
         >
           {hero.stats.map(({ stat, label }) => (

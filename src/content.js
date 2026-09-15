@@ -10,7 +10,7 @@ export const site = {
   // email button instead of the form. Set to a full POST endpoint URL
   // (Formspree, a Cloudflare Worker, etc.) to turn the form on.
   formEndpoint: '',
-  tagline: 'The founding team for your next enterprise initiative. Forward deployed.',
+  tagline: 'Your founding team, forward deployed.',
   copyright: '© 2026 Founding Crew',
 }
 
@@ -22,24 +22,24 @@ export const nav = [
 ]
 
 export const hero = {
-  headline: 'New initiatives need a founding team.',
-  headlineEmphasis: 'We deploy one inside your organization.',
-  sub: "Forward deployed engineers, product specialists, and strategists who've shipped inside NASA, Cargill, 3M, and GE. We embed with your teams to take AI and digital initiatives from pilot to production.",
+  headline: 'Your founding team,',
+  headlineEmphasis: 'forward deployed.',
+  sub: "Forward deployed engineers, product specialists, and strategists who've shipped inside NASA, Cargill, 3M, GE, AI research labs, and startups. We embed with your teams to take AI and digital initiatives from pilot to production.",
   primaryCta: { label: 'Talk to our team', href: '#contact' },
   secondaryCta: { label: 'See how we work', href: '#how-we-work' },
   // REVIEW: confirm all three are defensible as stated.
   stats: [
-    { stat: '6+', label: 'Years at NASA Mission Control' },
-    { stat: '20+', label: 'Enterprise, federal, and academic environments shipped inside' },
-    { stat: '0→1', label: 'Launch new enterprise initiatives' },
+    { stat: '6+', label: 'Years at NASA Mission Control, delivering software' },
+    { stat: '20+', label: "Enterprise, federal, and academic organizations we've built with" },
+    { stat: '0→1', label: 'Launch new enterprise initiatives, special projects, or AI rollouts' },
   ],
 }
 
 // Do not change: same logos, same order, same behavior.
 export const logoWall = {
-  eyebrow: "Where we've shipped",
+  eyebrow: "Who we've built with",
   note: "Experience across our team's prior roles and engagements.",
-  ariaLabel: "Organizations our team has shipped inside",
+  ariaLabel: "Organizations our team has built with",
   logos: [
     { name: 'NASA', href: 'https://www.nasa.gov/johnson/', logo: '/logos/nasa.svg' },
     { name: 'Cargill', href: 'https://www.cargill.com', logo: '/logos/cargill.svg' },
