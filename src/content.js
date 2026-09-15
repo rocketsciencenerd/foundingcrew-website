@@ -10,7 +10,7 @@ export const site = {
   // email button instead of the form. Set to a full POST endpoint URL
   // (Formspree, a Cloudflare Worker, etc.) to turn the form on.
   formEndpoint: '',
-  tagline: 'The founding team for your next enterprise initiative. Forward deployed.',
+  tagline: 'Your founding team, forward deployed.',
   copyright: '© 2026 Founding Crew',
 }
 
@@ -22,9 +22,9 @@ export const nav = [
 ]
 
 export const hero = {
-  headline: 'New initiatives need a founding team.',
-  headlineEmphasis: 'We deploy one inside your organization.',
-  sub: "Forward deployed engineers, product specialists, and strategists who've shipped inside NASA, Cargill, 3M, and GE. We embed with your teams to take AI and digital initiatives from pilot to production.",
+  headline: 'Your founding team,',
+  headlineEmphasis: 'forward deployed.',
+  sub: "Forward deployed engineers, product specialists, and strategists who've shipped inside NASA, Cargill, 3M, GE, AI research labs, and startups. We embed with your teams to take AI and digital initiatives from pilot to production.",
   primaryCta: { label: 'Talk to our team', href: '#contact' },
   secondaryCta: { label: 'See how we work', href: '#how-we-work' },
   // REVIEW: confirm all three are defensible as stated.
